@@ -9,7 +9,10 @@ import messageRoutes from './routes/messageRoutes.js';
 import http from 'http';
 import { Server } from 'socket.io';
 
+
 dotenv.config();
+
+const PORT = process.env.PORT || 8080; // Use process.env.PORT for deployment
 
 const app = express();
 const server = http.createServer(app);
@@ -65,8 +68,8 @@ io.on('connection', (socket) => {
 // Connect to MongoDB and Start Server
 connectDB()
     .then(() => {
-        server.listen(8080, () => {
-            console.log('Server started on port 8080');
+        server.listen(PORT, () => {
+            console.log('Server started on port');
         });
     })
     .catch((error) => {
